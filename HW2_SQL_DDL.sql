@@ -143,18 +143,111 @@ values(3, 7),
       (39, 11),
       (61, 15),
       (63, 12),
-      (71, 3),
-      (73, 7),
-      (81, 4),
-      (113, 7),
-      (111, 4),
-      (113, 7),
-      (91, 4),
-      (87, 7),
-      (77, 4),
-      (75, 7),
-      (74, 4),
-      (73, 7),
-      (71, 4),
+      (70, 3),
+      (63, 7),
+      (8, 4),
+      (9, 7),
+      (38, 4),
+      (39, 7),
+      (44, 4),
+      (45, 7),
+      (46, 4),
+      (47, 7),
+      (48, 4),
+      (49, 7),
+      (50, 4);
 
-	 select * from employee_salary ;
+select * from employee_salary ;
+	
+	--7.	Создать таблицу roles1
+create table roles1(
+	id serial  primary key,
+    role_name int not null unique
+);
+
+select * from roles1;
+
+--8.Gоменять тип столба role_name с int на varchar(30)
+alter table roles1 
+alter column role_name type varchar(30) using role_name::varchar(30);
+
+select * from roles1;
+
+--9.Наполнить таблицу roles 20 строками
+insert into roles1(role_name)
+values('Junior Python developer'),
+      ('Middle Python developer'),
+      ('Senior Python developer'),
+	  ('Junior Java developer'),
+	  ('Middle Java developer'),
+	  ('Senior Java developer'),
+	  ('Junior JavaScript developer'),
+	  ('Senior JavaScript developer'),
+	  ('Junior Manual QA engineer'),
+	  ('Middle Manual QA engineer'),
+	  ('Senior Manual QA engineer'),
+	  ('Project Manager'),
+	  ('Designer'),
+	  ('HR'),
+	  ('CEO'),
+	  ('Sales manager'),
+	  ('Junior Automation QA engineer'),
+	  ('Middle Automation QA engineer'),
+	  ('Senior Automation QA engineer');
+
+select * from roles1;
+
+--10.	Создать таблицу roles_employee
+create table roles_employee(
+	id serial primary key,
+	employee_id int not null unique,
+	FOREIGN KEY (employee_id)  REFERENCES employees (id),
+	role_id1 int not null ,
+	foreign key (role_id1) references roles(id)
+	);
+	
+select * from roles_employee  ;
+
+--11.Наполнить таблицу roles_employee 40 строками:
+insert into roles_employee(employee_id, role_id1)
+values(6, 1),
+	  (7, 2),
+	  (8, 3),
+	  (9, 4),
+	  (10, 5),
+	  (11, 6),
+	  (12, 7),
+	  (14, 8),
+	  (15, 9),
+	  (16, 10),
+	  (17, 11),
+	  (18, 12),
+	  (19, 13),
+	  (20, 14),
+	  (21, 15),
+	  (22, 1),
+	  (23, 2),
+	  (24, 3),
+	  (25, 4),
+	  (26, 5),
+	  (27, 6),
+	  (31, 7),
+	  (32, 8),
+	  (33, 9),
+	  (34, 10),
+	  (35, 11),
+	  (36, 12),
+	  (37, 13),
+	  (38, 14),
+	  (41, 15),
+	  (51, 1),
+	  (52, 2),
+	  (53, 3),
+	  (54, 4),
+	  (55, 5),
+	  (56, 6),
+	  (57, 7),
+	  (58, 8),
+	  (59, 9),
+	  (61, 10);
+	  
